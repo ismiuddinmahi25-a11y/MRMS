@@ -1,0 +1,114 @@
+/* =========================================================
+   MRMS - Doctor dashboard additions (assets/css/doctor-dashboard.css)
+   Loads AFTER dashboard.css and only adds what the doctor
+   page needs. It uses the same design tokens (:root vars).
+   ========================================================= */
+
+/* ---------- Layout helpers ---------- */
+.block { margin-bottom: 20px; }
+.two-col.even { grid-template-columns: 1fr 1fr; }
+
+/* Four stat cards on desktop */
+.stats.stats-4 { grid-template-columns: repeat(4, 1fr); }
+.stats-4 .stat { padding: 22px 20px; gap: 16px; }
+.stats-4 .stat-value { font-size: 32px; }
+
+/* ---------- Top bar: dropdowns ---------- */
+.dropdown { position: relative; }
+.bell { position: relative; border: 1px solid var(--line); background: #fff; color: var(--navy-800); }
+.bell:hover { background: #eaf2f6; }
+.bell-dot { position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--teal-500); border: 2px solid #fff; }
+
+.profile-btn { cursor: pointer; font: inherit; text-align: left; transition: border-color .2s; }
+.profile-btn:hover { border-color: var(--teal-500); }
+.profile-btn .chev { color: var(--muted); display: grid; transition: transform .2s; }
+.dropdown.open .profile-btn .chev { transform: rotate(180deg); }
+
+.dropdown-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 230px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px rgba(12, 45, 68, .14); padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s, transform .18s, visibility .18s; z-index: 70; }
+.dropdown.open .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.dropdown-head { padding: 10px 12px 12px; border-bottom: 1px solid var(--line); margin-bottom: 6px; font-size: 14px; font-weight: 600; color: var(--navy-800); }
+.dropdown-head strong { display: block; font-size: 14.5px; }
+.dropdown-head small { font-size: 12.5px; font-weight: 400; color: var(--muted); }
+
+.dropdown-item { display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: var(--ink); transition: background .2s, color .2s; }
+.dropdown-item:hover { background: #eef5f8; }
+.dropdown-item.danger:hover { background: #fdecea; color: #c0392b; }
+.dropdown-item.disabled { color: #8aa0ae; cursor: not-allowed; }
+.dropdown-item.disabled:hover { background: transparent; }
+.dropdown-item em { margin-left: auto; font-style: normal; font-size: 11px; padding: 2px 8px; border-radius: 99px; background: #e7eef2; color: #6f8a9b; }
+
+.notif-menu { width: 320px; }
+.notif-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 14px 18px; }
+.notif-empty .empty-icon { width: 46px; height: 46px; border-radius: 50%; background: var(--teal-100); color: #0e8f81; display: grid; place-items: center; margin-bottom: 10px; }
+.notif-empty strong { color: var(--navy-800); font-size: 14.5px; }
+.notif-empty p { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.notif-list li { padding: 11px 12px; border-radius: 9px; }
+.notif-list li:hover { background: #eef5f8; }
+.notif-list p { font-size: 14px; }
+.notif-list small { color: var(--muted); font-size: 12.5px; }
+
+/* ---------- Small buttons ---------- */
+.btn-sm { display: inline-flex; align-items: center; justify-content: center; padding: 7px 16px; border-radius: 9px; font-size: 13px; font-weight: 600; color: var(--navy-800); background: #fff; border: 1px solid var(--line); white-space: nowrap; transition: background .2s, border-color .2s, color .2s; }
+a.btn-sm:hover { background: var(--teal-100); border-color: var(--teal-500); color: #0b7468; }
+.btn-sm.disabled { color: #8aa0ae; background: #f4f8fb; cursor: not-allowed; }
+
+/* ---------- Tables ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 560px; }
+.data-table th { text-align: left; padding: 12px 16px; background: #f4f8fb; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.data-table td { padding: 14px 16px; border-top: 1px solid var(--line); vertical-align: middle; }
+.data-table tbody tr:first-child td { border-top: 0; }
+.data-table tbody tr:hover { background: #f9fcfd; }
+.data-table strong { color: var(--navy-800); }
+.col-action { text-align: right !important; }
+
+.person { display: inline-flex; align-items: center; gap: 10px; }
+.mini-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--navy-700), var(--navy-800)); color: var(--teal-400); display: inline-grid; place-items: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mini-avatar.lg { width: 42px; height: 42px; font-size: 14px; }
+
+/* Status badges */
+.badge { display: inline-block; padding: 3px 12px; border-radius: 99px; font-size: 12.5px; font-weight: 600; }
+.badge-confirmed { background: #e1f1f8; color: #226f91; }
+.badge-waiting   { background: #fdf3dc; color: #946b0c; }
+.badge-pending   { background: #fdf3dc; color: #946b0c; }
+.badge-completed { background: #e1f4ec; color: #22744f; }
+.badge-cancelled { background: #fdecea; color: #b03a2e; }
+
+/* ---------- Lists (recent patients, upcoming) ---------- */
+.list li { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); }
+.list li:first-child { border-top: 0; padding-top: 0; }
+.list-text { display: flex; flex-direction: column; min-width: 0; flex: 1; line-height: 1.4; }
+.list-text strong { color: var(--navy-800); font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-text small { color: var(--muted); font-size: 12.5px; }
+
+.date-chip { width: 48px; height: 52px; border-radius: 12px; background: var(--teal-100); color: #0b7468; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; flex-shrink: 0; }
+.date-chip b { font-family: var(--serif); font-size: 19px; }
+.date-chip small { font-size: 11.5px; font-weight: 600; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1280px) {
+    .stats.stats-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1100px) {
+    .two-col.even { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+    .profile-btn .chev { display: none; }
+    .notif-menu { width: min(320px, calc(100vw - 40px)); }
+}
+@media (max-width: 600px) {
+    .stats.stats-4 { grid-template-columns: 1fr; }
+
+    /* Tables become stacked cards on phones */
+    .table-wrap { border: 0; overflow: visible; }
+    .data-table { min-width: 0; }
+    .data-table thead { display: none; }
+    .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
+    .data-table tr { border: 1px solid var(--line); border-radius: 12px; padding: 6px 14px; margin-bottom: 12px; background: #fff; }
+    .data-table td { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); text-align: right; }
+    .data-table tbody tr:first-child td { border-top: 1px solid var(--line); }
+    .data-table td:first-child { border-top: 0; }
+    .data-table td::before { content: attr(data-label); color: var(--muted); font-size: 12.5px; text-align: left; }
+    .col-action { text-align: right !important; }
+}
